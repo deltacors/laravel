@@ -1,6 +1,6 @@
 # Laravel 
-List of basic and useful commands for laravel 6 framework.
-I'll update this list every time I'll use a new command for my projects.
+List of basic and useful commands for laravel 6 framework.<br>
+I am going to update this list every time I'll use a new command for my projects.
 
 ### Create a project
 ```

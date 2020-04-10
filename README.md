@@ -128,6 +128,22 @@ public function show($locale, ExampleClass $class) {
 }
 ```
 
+### Add translation to Eloquent model
+To translate database fields you could use the column approach (field_it, field_en), but it's not scalable and you'll need to tweak the database everytime you need a new language.<br>
+From the terminal add this package:
+```
+composer require astrotomic/laravel-translatable
+```
+After installing the package we copy the config file to our project:
+```
+php artisan vendor:publish --tag=translatable
+```
+For every model we want to translate we need a ModelTranlslation:
+```
+php artisan make:model ModelNameTranlslation
+```
+
+
 ### Retrieve element by slug
 Sometimes you'll need to change the default primary key (ID) to something else for example "slug".<br>
 Inside the model file:

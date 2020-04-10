@@ -143,6 +143,50 @@ For every model we want to translate we need a ModelTranlslation:
 php artisan make:model ModelNameTranlslation
 ```
 
+Let's create the migrations for an Article table and it's tranlsation table.
+
+```
+Schema::create('article', function(Blueprint $table) {
+    # fields not translatable
+    $table->increments('id');
+    $table->timestamps();
+});
+```
+
+```
+Schema::create('article_translations', function(Blueprint $table) {
+    $table->increments('id');
+    $table->integer('article_id')->unsigned();
+    $table->string('locale')->index();
+    # translatable fields
+    $table->string('title');
+    $table->text('content');
+
+    $table->unique(['article_id', 'locale']);
+    $table->foreign('article_id')->references('id')->on('posts')->onDelete('cascade');
+});
+```
+The translatable model Post should use the trait Astrotomic\Translatable\Translatable. The default convention for the translation model is PostTranslation. The array $translatedAttributes contains the names of the fields being translated in the PostTranslation model.
+Inside the Article model:
+```
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
+
+class Post extends Model implements TranslatableContract
+{
+    use Translatable;
+    
+    public $translatedAttributes = ['title', 'content'];
+}
+```
+Inside the ArticleTranslation model:
+```
+class PostTranslation extends Model
+{
+    public $timestamps = false;
+    protected $fillable = ['title', 'content'];
+}
+```
 
 ### Retrieve element by slug
 Sometimes you'll need to change the default primary key (ID) to something else for example "slug".<br>

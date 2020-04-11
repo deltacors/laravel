@@ -172,7 +172,7 @@ Schema::create('article_translations', function(Blueprint $table) {
     $table->text('content');
 
     $table->unique(['article_id', 'locale']);
-    $table->foreign('article_id')->references('id')->on('posts')->onDelete('cascade');
+    $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
 });
 ```
 The translatable model Post should use the trait Astrotomic\Translatable\Translatable. The default convention for the translation model is PostTranslation. The array $translatedAttributes contains the names of the fields being translated in the PostTranslation model.

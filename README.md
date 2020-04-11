@@ -150,6 +150,11 @@ php artisan make:model ModelNameTranlslation
 Let's create the migrations for an Article table and it's tranlsation table.
 
 ```
+php artisan make:migration create_article_translations_table
+```
+
+
+```
 Schema::create('article', function(Blueprint $table) {
     # fields not translatable
     $table->increments('id');

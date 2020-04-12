@@ -144,7 +144,7 @@ php artisan vendor:publish --tag=translatable
 ```
 For every model we want to translate we need a ModelTranlslation:
 ```
-php artisan make:model ModelNameTranlslation
+php artisan make:model ModelNameTranslation
 ```
 
 Let's create the migrations for an Article table and it's tranlsation table.
